@@ -1,0 +1,25 @@
+[package]
+name = "fitgen"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <you@example.com>"]
+description = "A Rust CLI and library for generating structured .fit workout files for cycling computers like Wahoo and Garmin."
+license = "MIT"
+repository = "https://github.com/alex-stout/fitgen"
+homepage = "https://github.com/alex-stout/fitgen"
+readme = "README.md"
+keywords = ["cycling", "workout", "fit", "cli", "wahoo"]
+categories = ["command-line-utilities", "data-format", "sports"]
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+byteorder = "1.5"
+chrono = "0.4"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+tempfile = "3.8"
+
+[[bin]]
+name = "fitgen"
+path = "src/main.rs"
