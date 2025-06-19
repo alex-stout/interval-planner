@@ -37,12 +37,12 @@ struct Cli {
 }
 
 fn check_args(args: &Cli) {
-    if args.interval_count <= 0 {
+    if args.interval_count == 0 {
         println!("Interval count must be a positive integer");
         exit(1)
     }
 
-    if args.duration <= 0 {
+    if args.duration == 0 {
         println!("Duration count must be a positive integer");
         exit(1)
     }
@@ -122,7 +122,7 @@ fn main() {
             "Warm up, intervals, and cool down.".to_string(),
         ],
         duration: cli.duration,
-        intervals: intervals,
+        intervals,
     };
 
     let contents = workout.to_plan_file();
