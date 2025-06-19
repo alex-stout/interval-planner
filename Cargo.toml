@@ -9,7 +9,7 @@ repository = "https://github.com/alex-stout/fitgen"
 homepage = "https://github.com/alex-stout/fitgen"
 readme = "README.md"
 keywords = ["cycling", "workout", "fit", "cli", "wahoo"]
-categories = ["command-line-utilities", "data-format", "sports"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
