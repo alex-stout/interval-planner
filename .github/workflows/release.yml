@@ -1,0 +1,89 @@
+name: Publish to crates.io
+
+on:
+  push:
+    tags:
+      - "v*" # Runs only on tags starting with v, like v1.0.0
+
+jobs:
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: moonrepo/setup-rust@v1
+        with:
+          components: rustfmt
+      - name: Check formatting
+        run: cargo fmt --all --check
+  lint:
+    name: Lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: moonrepo/setup-rust@v1
+        with:
+          bins: cargo-make
+          components: clippy
+      - name: Run linter
+        run: cargo clippy --all-targets --all-features -- -D warnings
+  audit:
+    name: Audit
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: moonrepo/setup-rust@v1
+        with:
+          bins: cargo-make
+          components: clippy
+      - name: Cache cargo-audit binary
+        uses: actions/cache@v4
+        id: cargo-audit-cache
+        with:
+          path: ~/.cargo/bin/cargo-audit
+          key: cargo-audit-binary
+      - name: Install cargo-audit (if not cached)
+        if: steps.cargo-audit-cache.outputs.cache-hit != 'true'
+        run: cargo install cargo-audit --version 0.18.2
+
+      - name: Run cargo audit
+        run: cargo audit
+  publish:
+    name: Publish Crate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: moonrepo/setup-rust@v1
+        with:
+          rust-version: stable
+
+      - name: Cache cargo registry
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry
+
+      - name: Cache cargo index
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-git
+
+      - name: Run doc checks
+        run: cargo test --doc
+
+      - name: Publish to crates.io
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_API_KEY }}
+        run: cargo publish --no-verify
