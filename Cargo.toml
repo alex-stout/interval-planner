@@ -1,9 +1,9 @@
 [package]
-name = "fitgen"
+name = "interval-planner"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <you@example.com>"]
-description = "A Rust CLI and library for generating structured .fit workout files for cycling computers like Wahoo and Garmin."
+authors = ["Alex Stout"]
+description = "A Rust CLI and library for generating structured .fit workout files for cycling computers like Wahoo"
 license = "MIT"
 repository = "https://github.com/alex-stout/fitgen"
 homepage = "https://github.com/alex-stout/fitgen"
