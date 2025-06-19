@@ -13,12 +13,6 @@ categories = ["command-line-utilities", "data-format", "sports"]
 
 [dependencies]
 clap = { version = "4.4", features = ["derive"] }
-byteorder = "1.5"
-chrono = "0.4"
-
-[dev-dependencies]
-assert_cmd = "2.0"
-tempfile = "3.8"
 
 [[bin]]
 name = "fitgen"
