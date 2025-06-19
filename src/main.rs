@@ -122,7 +122,7 @@ fn main() {
             "Warm up, intervals, and cool down.".to_string(),
         ],
         duration: cli.duration,
-        intervals: intervals
+        intervals: intervals,
     };
 
     let contents = workout.to_plan_file();
