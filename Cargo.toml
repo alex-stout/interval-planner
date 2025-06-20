@@ -1,6 +1,6 @@
 [package]
 name = "interval-planner"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Alex Stout"]
 description = "A Rust CLI and library for generating structured .fit workout files for cycling computers like Wahoo"
