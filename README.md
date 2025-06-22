@@ -1,4 +1,4 @@
-# Fitgen
+# Interval Planner
 
 CLI tool to generate Wahoo-compatible `.plan` workout files.
 
@@ -20,11 +20,11 @@ CLI tool to generate Wahoo-compatible `.plan` workout files.
 
 1. Clone the repository
 2. Build with Cargo: `cargo build --release`
-3. Binary will be located at: `target/release/wahoo-plan-gen`
+3. Binary will be located at: `target/release/interval-planner`
 
 ## Usage
 
-`wahoo-plan-gen [OPTIONS]`
+`interval-planner [OPTIONS]`
 
 ### Options
 
@@ -37,7 +37,7 @@ CLI tool to generate Wahoo-compatible `.plan` workout files.
 
 ### Example
 
-`wahoo-plan-gen -o my_workout.plan -n "FTP Builder" -i 4 --no-warmup --cooldown -d 4500`
+`interval-planner -o my_workout.plan -n "FTP Builder" -i 4 --no-warmup --cooldown -d 4500`
 
 Generates a `.plan` file named `my_workout.plan` with:
 
